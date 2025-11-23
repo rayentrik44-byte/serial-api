@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Serial</title>
+<style>
+body { background:#111; color:white; text-align:center; padding-top:100px; font-family:Arial; }
+input,button { width:300px; padding:12px; margin:10px; border:none; border-radius:6px; }
+button { background:#00c6ff; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<h1>Register Serial</h1>
+
+<form id="form">
+  <input name="serial" placeholder="Serial Number" required><br>
+  <button type="submit">Register</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+form.onsubmit = async (e) => {
+    e.preventDefault();
+    let res = await fetch("/register", {
+       method: "POST",
+       body: new FormData(form)
+    });
+    let data = await res.json();
+    result.innerText = data.message;
+};
+</script>
+
+</body>
+</html>
 
